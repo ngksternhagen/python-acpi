@@ -51,7 +51,7 @@ def get_frequencies(cpu=0):
     '''Returns a list of available frequencies for the selected CPU. Usually
     it can be assumed that all the CPUs are the same.
 
-    Frequencies are indicated in Mhz
+    Frequencies are indicated in MHz
 
     If not specified the list is about CPU 0'''
     try:
@@ -169,8 +169,8 @@ def powersave_cpu(handler,minf,maxf,cpu):
     for i in cpu:
         call(('sudo','cpufreq-set','-g%s' % handler,'-c%d' % i))
         print ('sudo','cpufreq-set','-g%s' % handler,'-c%d' % i)
-        call(('sudo','cpufreq-set','-u%dMhz' % maxf,'-d%dMhz' % minf,'-c%d' %i))
-        print ('sudo','cpufreq-set','-u%dMhz' % maxf,'-d%dMhz' % minf,'-c%d' %i)
+        call(('sudo','cpufreq-set','-u%dMHz' % maxf,'-d%dMHz' % minf,'-c%d' %i))
+        print ('sudo','cpufreq-set','-u%dMHz' % maxf,'-d%dMHz' % minf,'-c%d' %i)
 
 def lock_screen():
     '''Uses dbus to lock the screen'''
