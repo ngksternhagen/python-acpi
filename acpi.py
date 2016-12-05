@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 # ACPI script
 # Copyright (C) 2008  Salvo "LtWorf" Tomaselli
+# Copyright (C) 2016  NGK Sternhagen
 #
 # this is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
