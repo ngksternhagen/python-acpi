@@ -18,6 +18,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 # author Salvo "LtWorf" Tomaselli <tiposchi@tiscali.it>
+# discussion of changes in 2016 and after should be directed to NGK Sternhagen
+# <sternhagen@protonmail.ch>
 
 import socket,os
 import sys,signal
