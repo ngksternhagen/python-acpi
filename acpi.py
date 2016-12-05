@@ -50,16 +50,16 @@ def get_cpus():
 def get_frequencies(cpu=0):
     '''Returns a list of available frequencies for the selectec CPU. Usually
     it can be assumed that all the CPUs are the same.
-    
+
     Frequencies are indicated in Mhz
-    
+
     If not specified the list is about CPU 0'''
     try:
         f=open('/sys/devices/system/cpu/cpu%d/cpufreq/scaling_available_frequencies'%cpu)
         freq=f.read(4096)
         f.close()
         freq=freq.strip().split(' ')
-    
+
         return [int(i)/1000 for i in freq]
     except:
         maxf=open('/sys/devices/system/cpu/cpu%d/cpufreq/cpuinfo_max_freq'%cpu)
@@ -110,19 +110,19 @@ def _call_event(event):
 class listener:
     '''This class listens to acpi events and
     generates events accordingly.
-    
+
     To receive the events, replace the
     plugged,unplugged and so on variables
-    
+
     they can be a single function or a list
     of functions'''
     def __init__(self,threaded=False,acpi_socket='/var/run/acpid.socket'):
         #TODO what if threaded = True?
-        
+
         s = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
         s.connect(acpi_socket)
         self.s = s
-        
+
         #Events
         self.plugged = _nothing
         self.unplugged = _nothing
@@ -130,11 +130,11 @@ class listener:
         self.lid_open = _nothing
         self.lid_close = _nothing
         self.raw_event = _nothing
-    
+
     def plugged_hook(self):
         '''Checks if plugged or not and
         calls the plugged or unplugged hooks.
-        
+
         This function is very useful at startup or
         after a wakeup when the plugged/unplugged
         event will not be generated automatically.
@@ -143,7 +143,7 @@ class listener:
             self.plugged()
         else:
             self.unplugged()
-        
+
     def listen(self):
         '''Starts listening to the ACPI events'''
         while 1:
@@ -179,17 +179,17 @@ def lock_screen():
 def screen_off():
     #TODO maybe do it with a different method
     call(('xset','dpms', 'force', 'off'))
-    
+
 def simulate_user_activity():
     '''Simulates some activity to stop the screensaver from triggering'''
     _simulate_activity()
-    
+
 def s2ram():
     '''Uses dbus to suspend to RAM'''
     return _s2ram()
 def s2disk():
     return _s2disk()
-    
+
 ##############################################################
 
 def main():
@@ -215,7 +215,7 @@ def main():
             screen_off()
     def ev(e):
         print e
-    
+
     daemonize()
 
     l = listener()
@@ -225,7 +225,7 @@ def main():
     l.lid_close = lid_close
     l.power_button = power_button
     l.raw_event = ev
-    
+
     l.plugged_hook()
     l.listen()
 
