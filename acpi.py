@@ -48,7 +48,7 @@ def get_cpus():
     return range(int(freq[0]),int(freq[1])+1)
 
 def get_frequencies(cpu=0):
-    '''Returns a list of available frequencies for the selectec CPU. Usually
+    '''Returns a list of available frequencies for the selected CPU. Usually
     it can be assumed that all the CPUs are the same.
 
     Frequencies are indicated in Mhz
